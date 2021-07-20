@@ -28,4 +28,40 @@ object LogInRequests {
       .check(header("Location").is("/agents-frontend/dashboard"))
     )
   }
+
+  def getAddClientPage = {
+    exec(http("Get add client page")
+      .get("/client-code")
+
+    )
+  }
+
+  def submitAddClient = {
+    exec(http("Add client")
+      .post("/client-code")
+      .formParam("crn", "CRNC493F3DA")
+      .disableFollowRedirect
+      .check(status.is(303))
+      .check(header("Location").is("/agents-frontend/success-client-code"))
+    )
+  }
+
+  def getDashBoard = {
+    exec(http("Get dashboard")
+      .get("/dashboard")
+      .check(status.is(200)))
+  }
+
+  def getRemoveClientPage = {
+    exec(http("Get remove client page")
+      .get("/remove-clients/CRNC493F3DA")
+      .check(status.is(200)))
+  }
+
+  def submitConfirmRemoveClient = {
+    exec(http("Submit confirm remove client")
+      .get("/remove-confirmed/CRNC493F3DA")
+      .check(status.is(200)))
+
+  }
 }
