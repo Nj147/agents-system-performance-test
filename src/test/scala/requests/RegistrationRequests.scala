@@ -88,4 +88,7 @@ object RegistrationRequests {
       .check(status.is(200))
     )
   }
+
+
 }
+

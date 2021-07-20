@@ -14,6 +14,11 @@ class LogInSimulation extends Simulation {
     .exec(LogInRequests.getStartPage)
     .exec(LogInRequests.getLoginPage)
     .exec(LogInRequests.submitLoginDetails)
+    .exec(LogInRequests.getAddClientPage)
+    .exec(LogInRequests.submitAddClient)
+    .exec(LogInRequests.getDashBoard)
+    .exec(LogInRequests.getRemoveClientPage)
+    .exec(LogInRequests.submitConfirmRemoveClient)
 
   val LogInSimulation =
     setUp(scn.inject(atOnceUsers(1)).protocols(httpProtocol))

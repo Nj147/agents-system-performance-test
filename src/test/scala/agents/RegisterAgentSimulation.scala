@@ -22,6 +22,5 @@ class RegisterAgentSimulation extends Simulation {
     .exec(RegistrationRequests.getSuccessfulRegistration)
     .exec(RegistrationRequests.getSignIn)
 
-
   val registerAgentSimulation = setUp(scn.inject(atOnceUsers(1)).protocols(httpProtocol))
 }
