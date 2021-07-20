@@ -1,10 +1,8 @@
 package agents
 
-import scala.concurrent.duration._
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import io.gatling.jdbc.Predef._
-import requests.RegistrationRequests
+import requests.{LogInRequests, RegistrationRequests}
 
 class RegisterAgentSimulation extends Simulation {
 
@@ -12,9 +10,8 @@ class RegisterAgentSimulation extends Simulation {
     .baseUrl("http://localhost:9000")
     .inferHtmlResources()
 
-
   val scn = scenario("RegisterAgentSimulation")
-    .exec(RegistrationRequests.getStartPage)
+    .exec(LogInRequests.getStartPage)
     .exec(RegistrationRequests.getBusinessNamePage)
     .exec(RegistrationRequests.submitBusinessName)
     .exec(RegistrationRequests.submitEmail)
@@ -25,11 +22,6 @@ class RegisterAgentSimulation extends Simulation {
     .exec(RegistrationRequests.getSuccessfulRegistration)
     .exec(RegistrationRequests.getSignIn)
 
-  val userSignInScn =
 
-    setUp(scn.inject(
-      nothingFor(4.seconds), // 1
-      atOnceUsers(10), // 2
-      rampUsers(10).during(5.seconds))
-      .protocols(httpProtocol))
+  val registerAgentSimulation = setUp(scn.inject(atOnceUsers(1)).protocols(httpProtocol))
 }

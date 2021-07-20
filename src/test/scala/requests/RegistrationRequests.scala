@@ -3,21 +3,16 @@ package requests
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
-object RegistrationRequests extends {
+object RegistrationRequests {
   val uri1 = "localhost"
 
-  def getStartPage = {
-    exec(http("Get start page")
-      .get("http://" + uri1 + ":9005/agents-frontend/start-page")
-      .check(status.is(200))
-    )
-  }
   def getBusinessNamePage = {
     exec(http("Get business name page")
       .get("/registration/business-name/false")
       .check(status.is(200))
     )
   }
+
   def submitBusinessName = {
     exec(http("Submit business name")
       .post("/registration/business-name/false")
@@ -27,6 +22,7 @@ object RegistrationRequests extends {
       .check(header("Location").is("/registration/email/false"))
     )
   }
+
   def submitEmail = {
     exec(http("Submit email")
       .post("/registration/email/false")
@@ -36,6 +32,7 @@ object RegistrationRequests extends {
       .check(header("Location").is("/registration/contact-number/false"))
     )
   }
+
   def submitContactNumber = {
     exec(http("Submit contact number")
       .post("/registration/contact-number/false")
@@ -45,6 +42,7 @@ object RegistrationRequests extends {
       .check(header("Location").is("/registration/address/false"))
     )
   }
+
   def submitAddress = {
     exec(http("Submit address")
       .post("/registration/address/false")
@@ -55,6 +53,7 @@ object RegistrationRequests extends {
       .check(header("Location").is("/registration/correspondence/false"))
     )
   }
+
   def submitCorrespondence = {
     exec(http("Submit correspondence")
       .post("/registration/correspondence/false")
@@ -64,6 +63,7 @@ object RegistrationRequests extends {
       .check(header("Location").is("/registration/password"))
     )
   }
+
   def submitPassword = {
     exec(http("Submit password")
       .post("/registration/password")
@@ -74,12 +74,14 @@ object RegistrationRequests extends {
       .check(header("Location").is("/registration/summary"))
     )
   }
+
   def getSuccessfulRegistration = {
     exec(http("Successful registration")
       .get("/registration/arn?")
       .check(status.is(200))
     )
   }
+
   def getSignIn = {
     exec(http("Sign in")
       .get("http://" + uri1 + ":9005/agents-frontend/agent-login")
