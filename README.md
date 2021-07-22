@@ -1,5 +1,5 @@
 # Agents System Performance Test Suite
-Performance test respository for agents system service (smoke tests).
+Performance test respository for agents system service.
 
 ## Running the tests
 ### Setup
